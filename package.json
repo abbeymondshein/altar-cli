@@ -1,0 +1,35 @@
+{
+  "name": "altar-cli",
+  "version": "1.0.0",
+  "description": "CLI app to create and maintain an altar practice",
+  "main": "altar.js",
+  "bin": {
+    "altar": "./altar.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abbeymondshein/altar-cli.git"
+  },
+  "keywords": [
+    "altar",
+    "javascript",
+    "cli-app",
+    "cli",
+    "nodejs",
+    "node-js",
+    "technomancy"
+  ],
+  "author": "Abbey Mondshein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abbeymondshein/altar-cli/issues"
+  },
+  "homepage": "https://github.com/abbeymondshein/altar-cli#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^6.0.0"
+  }
+}
