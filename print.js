@@ -9,6 +9,7 @@ const {
   addingMessage,
   DIVIDER,
   HELP_MESSAGE,
+  EMPTY_MESSAGE,
 } = require("./constants");
 
 module.exports = Object.freeze({
@@ -50,5 +51,8 @@ module.exports = Object.freeze({
     ${DIVIDER}
     
     `);
+  },
+  printEmptyMessage: () => {
+    console.log(EMPTY_MESSAGE);
   },
 });

@@ -38,4 +38,7 @@ module.exports = Object.freeze({
     return `Placing a new ${color} candle on the altar. 
 Lighting the candle, and setting the intention: ${intention}`;
   },
+  EMPTY_MESSAGE: `Your Altar is currently empty.
+You can add a candle using the command:
+  altar -c <color> <intention>`,
 });
