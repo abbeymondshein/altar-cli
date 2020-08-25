@@ -38,6 +38,7 @@ module.exports = Object.freeze({
     });
   },
   printShelf: () => {
+    // TODO: add second shelf when need additional space
     console.log(SHELF);
   },
   printAddingNewItem: (color, intention) => {

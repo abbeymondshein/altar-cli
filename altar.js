@@ -24,9 +24,11 @@ program
   .description("Create and maintain an altar practice via the Command Line.")
   .parse(process.argv);
 
-printWelcomeMessage();
+const { load, candle, clear, remove, args } = program;
+const opts = program.opts();
 
-const { load, candle, clear, remove } = program;
+// Only print welcome message a flag is not included
+!Object.values(opts).includes(true) && printWelcomeMessage();
 
 if (candle) {
   if (!verifyColor(candle)) {
@@ -34,7 +36,7 @@ if (candle) {
     return;
   }
 
-  const intention = program.args.join(" ");
+  const intention = args.join(" ");
   const newItem = formatItemToAdd(candle, intention);
   // TODO: add in "loading/lighting" indicators using ora
   printAddingNewItem(candle, intention);
