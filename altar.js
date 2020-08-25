@@ -9,10 +9,14 @@ const {
   printCandleLit,
   printCandleWithColor,
   printCandleIntentions,
-  //   printAltar,
 } = require("./print");
 const { printAltar } = require("./printAltar");
-const { verifyColor } = require("./utils");
+const {
+  verifyColor,
+  addItemToAltar,
+  formatItemToAdd,
+  formatAltarUpdate,
+} = require("./utils");
 
 program
   .option("-l, --load", "Load Altar")
@@ -38,6 +42,7 @@ if (candle) {
   }
 
   const intention = program.args.join(" ");
+  const newItem = formatItemToAdd(candle, intention);
   console.log(`Adding ${candle} candle: `, intention);
 
   fs.readFile(`${__dirname}/altarItems.json`, "utf8", (err, data) => {
@@ -46,19 +51,9 @@ if (candle) {
       return;
     }
 
-    // * Imports a sample set / starter via JSON
-    const altarItems = JSON.parse(data);
-
-    const modifiedAltarItems = Object.assign([], altarItems);
-
-    modifiedAltarItems.push({
-      color: candle,
-      intention: intention,
-    });
-
     fs.writeFile(
       `${__dirname}/altarItems.json`,
-      JSON.stringify(modifiedAltarItems),
+      JSON.stringify(formatAltarUpdate(data, newItem)),
       (err) => {
         if (err) throw err;
         printCandleLit();
