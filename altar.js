@@ -28,7 +28,7 @@ if (program.load) {
 }
 
 if (program.json) {
-  fs.readFile("./altarItems.json", "utf8", (err, data) => {
+  fs.readFile(`${__dirname}/altarItems.json`, "utf8", (err, data) => {
     if (err) {
       console.error(err);
       return;
