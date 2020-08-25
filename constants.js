@@ -31,6 +31,11 @@ module.exports = Object.freeze({
     " grey "
   )}
   `,
+  HELP_MESSAGE: `for options & help, enter "altar -h"`,
   ADDED_MESSAGE: "candle successfully lit!",
   NOT_APPROVED_COLOR_MESSAGE: `The color you have chosen is not an approved option.`,
+  addingMessage: (color, intention) => {
+    return `Placing a new ${color} candle on the altar. 
+Lighting the candle, and setting the intention: ${intention}`;
+  },
 });

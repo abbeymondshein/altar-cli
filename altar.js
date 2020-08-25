@@ -1,22 +1,14 @@
 #!/usr/bin/env node
 const { program } = require("commander");
 const fs = require("fs");
-const c = require("chalk");
-const { CANDLE, DIVIDER, SHELF, ADDED_MESSAGE } = require("./constants");
 const {
-  printFlame,
   printNotApprovedColor,
   printCandleLit,
-  printCandleWithColor,
-  printCandleIntentions,
+  printAddingNewItem,
+  printWelcomeMessage,
 } = require("./print");
 const { printAltar } = require("./printAltar");
-const {
-  verifyColor,
-  addItemToAltar,
-  formatItemToAdd,
-  formatAltarUpdate,
-} = require("./utils");
+const { verifyColor, formatItemToAdd, formatAltarUpdate } = require("./utils");
 
 program
   .option("-l, --load", "Load Altar")
@@ -25,13 +17,7 @@ program
   .description("Create and maintain an altar practice via the Command Line.")
   .parse(process.argv);
 
-console.log(`for options & help, enter "altar -h"
-
-${DIVIDER}
-Welcome to Altar
-${DIVIDER}
-
-`);
+printWelcomeMessage();
 
 const { load, candle } = program;
 
@@ -43,7 +29,8 @@ if (candle) {
 
   const intention = program.args.join(" ");
   const newItem = formatItemToAdd(candle, intention);
-  console.log(`Adding ${candle} candle: `, intention);
+  // TODO: add in "loading/lighting" indicators using ora
+  printAddingNewItem(candle, intention);
 
   fs.readFile(`${__dirname}/altarItems.json`, "utf8", (err, data) => {
     if (err) {

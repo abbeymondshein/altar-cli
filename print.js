@@ -6,6 +6,9 @@ const {
   APPROVED_COLORS,
   NOT_APPROVED_COLOR_MESSAGE,
   ADDED_MESSAGE,
+  addingMessage,
+  DIVIDER,
+  HELP_MESSAGE,
 } = require("./constants");
 
 module.exports = Object.freeze({
@@ -35,5 +38,17 @@ module.exports = Object.freeze({
   },
   printShelf: () => {
     console.log(SHELF);
+  },
+  printAddingNewItem: (color, intention) => {
+    console.log(addingMessage(color, intention));
+  },
+  printWelcomeMessage: () => {
+    console.log(`${HELP_MESSAGE}
+
+    ${DIVIDER}
+    Welcome to Altar
+    ${DIVIDER}
+    
+    `);
   },
 });
