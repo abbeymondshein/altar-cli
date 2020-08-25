@@ -1,10 +1,8 @@
 [
-  {
-    "color": "red",
-    "intention": "for saint expedite"
-  },
-  {
-    "color": "blue",
-    "intention": "to call in support"
-  }
+  { "color": "red", "intention": "for saint expedite" },
+  { "color": "blue", "intention": "to call in support" },
+  { "color": "red", "intention": "financial abundance" },
+  { "color": "green", "intention": "peaceful home" },
+  { "color": "magenta", "intention": "love" },
+  { "color": "cyan", "intention": "motivation" }
 ]
