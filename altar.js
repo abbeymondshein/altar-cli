@@ -2,37 +2,17 @@
 const { program } = require("commander");
 const fs = require("fs");
 const c = require("chalk");
-
-const FLAME = " ▴";
-const CANDLE = " ┃";
-const DIVIDER = "◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆";
-const SHELF = "┍━━━━━━━━━━━━━━━━┑";
-
-const COLOR_OPTIONS = [
-  "black",
-  "red",
-  "green",
-  "yellow",
-  "blue",
-  "magenta",
-  "cyan",
-  "white",
-  "gray",
-  "redBright",
-  "greenBright",
-  "yellowBright",
-  "blueBright",
-  "magentaBright",
-  "cyanBright",
-  "whiteBright",
-];
-
-const APPROVED_COLORS = `OPTIONS: ${c.red("red")} ${c.green(
-  "green"
-)} ${c.yellow("yellow")} ${c.blue("blue")} ${c.magenta("magenta")} ${c.cyan(
-  "cyan"
-)} ${c.white("white")} ${c.grey("grey")}
-`;
+const { CANDLE, DIVIDER, SHELF, ADDED_MESSAGE } = require("./constants");
+const {
+  printFlame,
+  printNotApprovedColor,
+  printCandleLit,
+  printCandleWithColor,
+  printCandleIntentions,
+  //   printAltar,
+} = require("./print");
+const { printAltar } = require("./printAltar");
+const { verifyColor } = require("./utils");
 
 program
   .option("-l, --load", "Load Altar")
@@ -51,19 +31,14 @@ ${DIVIDER}
 
 const { load, candle } = program;
 
-const verifyColor = (color) => {
-  return COLOR_OPTIONS.includes(color);
-};
-
 if (candle) {
   if (!verifyColor(candle)) {
-    console.log(`The color you have chosen is not an approved option.`);
-    console.log(APPROVED_COLORS);
+    printNotApprovedColor();
     return;
   }
+
   const intention = program.args.join(" ");
   console.log(`Adding ${candle} candle: `, intention);
-  //   console.log(intention);
 
   fs.readFile(`${__dirname}/altarItems.json`, "utf8", (err, data) => {
     if (err) {
@@ -86,7 +61,7 @@ if (candle) {
       JSON.stringify(modifiedAltarItems),
       (err) => {
         if (err) throw err;
-        console.log("candle added!");
+        printCandleLit();
       }
     );
   });
@@ -99,36 +74,6 @@ if (load) {
       return;
     }
 
-    // * Imports a sample set / starter via JSON
-    const altarItems = JSON.parse(data);
-
-    // todo extract as util
-    const logFlames = (candleAmount) => {
-      console.log(`${c.yellow(FLAME.repeat(candleAmount))}`);
-    };
-
-    const logCandleWithColor = (altarItems) => {
-      const combined = [];
-      altarItems.forEach((element) => {
-        const { color } = element;
-        combined.push(`${c[color](CANDLE)}`);
-      });
-      console.log(combined.join(""));
-
-      return;
-    };
-
-    const logCandleIntentions = (altarItems) => {
-      altarItems.forEach((candleEntry) => {
-        const { color, intention } = candleEntry;
-        console.log(`${c[color](intention)}`);
-      });
-    };
-
-    // * LOG CANDLE OUTPUT
-    logFlames(altarItems.length);
-    logCandleWithColor(altarItems);
-    console.log(SHELF);
-    logCandleIntentions(altarItems);
+    printAltar(JSON.parse(data));
   });
 }
