@@ -7,6 +7,7 @@ const {
   printAddingNewItem,
   printWelcomeMessage,
   printEmptyMessage,
+  printRemoveItem,
 } = require("./print");
 const { printAltar } = require("./printAltar");
 const { verifyColor, formatItemToAdd, formatAltarUpdate } = require("./utils");
@@ -16,12 +17,16 @@ program
   .option("-j, --json", "Load from JSON File")
   .option("-c, --candle <color>", "Add a candle")
   .option("-x --clear", "Clear Altar of all Items")
+  .option(
+    "-rm --remove <candleNumberLTR>",
+    "Remove a specific candle by number. (Right-To-Left, Starting with 1)"
+  )
   .description("Create and maintain an altar practice via the Command Line.")
   .parse(process.argv);
 
 printWelcomeMessage();
 
-const { load, candle, clear } = program;
+const { load, candle, clear, remove } = program;
 
 if (candle) {
   if (!verifyColor(candle)) {
@@ -75,4 +80,30 @@ if (clear) {
   });
   // TODO: Extract and animate with ora
   console.log("ALTAR CLEARED");
+}
+
+if (remove) {
+  fs.readFile(`${__dirname}/altarItems.json`, "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    const currentAltarItems = JSON.parse(data);
+
+    if (currentAltarItems.length < 1) {
+      printEmptyMessage();
+    }
+
+    const removedAltarItem = currentAltarItems.splice(remove - 1, remove);
+
+    fs.writeFile(
+      `${__dirname}/altarItems.json`,
+      JSON.stringify(currentAltarItems),
+      (err) => {
+        if (err) throw err;
+        printRemoveItem(remove, removedAltarItem);
+      }
+    );
+  });
 }

@@ -55,4 +55,8 @@ module.exports = Object.freeze({
   printEmptyMessage: () => {
     console.log(EMPTY_MESSAGE);
   },
+  printRemoveItem: (itemNumber, removedItem) => {
+    const { color, intention } = removedItem[0];
+    console.log(`candle ${itemNumber} removed (${color}, ${intention})`);
+  },
 });
