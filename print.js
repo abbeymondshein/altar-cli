@@ -45,12 +45,13 @@ module.exports = Object.freeze({
     console.log(addingMessage(color, intention));
   },
   printWelcomeMessage: () => {
-    console.log(`${HELP_MESSAGE}
+    console.log(`
 
     ${DIVIDER}
     Welcome to Altar
     ${DIVIDER}
     
+${HELP_MESSAGE}
     `);
   },
   printEmptyMessage: () => {

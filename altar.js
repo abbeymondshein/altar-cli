@@ -17,18 +17,22 @@ const {
   formatAltarUpdate,
   loadAltarTitle,
 } = require("./utils");
+const { APPROVED_COLORS } = require("./constants");
 
 program
   .option("-l, --load", "Load Altar")
-  .option("-j, --json", "Load from JSON File")
-  .option("-c, --candle <color>", "Add a candle")
-  .option("-x, --clear", "Clear Altar of all Items")
   .option("-t, --title <title>", "Update the title of your Altar")
+  .option("-x, --clear", "Clear Altar of all Items")
   .option(
-    "-rm --remove <candleNumberLTR>",
-    "Remove a specific candle by number. (Right-To-Left, Starting with 1)"
+    "-c, --candle <color>",
+    `Add a candle: color is required. 
+  ${APPROVED_COLORS}`
   )
-  .description("Create and maintain an altar practice via the Command Line.")
+  .option(
+    "-rm --remove <itemNumber>",
+    "Remove a specific candle by number. (Starting with 1, ex: __1, 2, 3__)"
+  )
+  .description(`Create and maintain an altar practice via the Command Line.`)
   .parse(process.argv);
 
 const { load, candle, clear, remove, args, title } = program;
