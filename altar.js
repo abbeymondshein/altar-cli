@@ -22,7 +22,8 @@ program
   .option("-l, --load", "Load Altar")
   .option("-j, --json", "Load from JSON File")
   .option("-c, --candle <color>", "Add a candle")
-  .option("-x --clear", "Clear Altar of all Items")
+  .option("-x, --clear", "Clear Altar of all Items")
+  .option("-t, --title <title>", "Update the title of your Altar")
   .option(
     "-rm --remove <candleNumberLTR>",
     "Remove a specific candle by number. (Right-To-Left, Starting with 1)"
@@ -30,7 +31,7 @@ program
   .description("Create and maintain an altar practice via the Command Line.")
   .parse(process.argv);
 
-const { load, candle, clear, remove, args } = program;
+const { load, candle, clear, remove, args, title } = program;
 const opts = program.opts();
 
 // Only print welcome message a flag is not included
@@ -115,4 +116,25 @@ if (remove) {
       }
     );
   });
+}
+
+if (title) {
+  const newTitle = args ? title + " " + args.join(" ") : title;
+
+  fs.writeFile(
+    `${__dirname}/altarCustomization.json`,
+    JSON.stringify([
+      {
+        title: newTitle,
+      },
+    ]),
+    (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+    }
+  );
+
+  console.log(`Altar re-named: ${newTitle}`);
 }

@@ -41,4 +41,5 @@ Lighting the candle, and setting the intention: ${intention}`;
   EMPTY_MESSAGE: `Your Altar is currently empty.
 You can add a candle using the command:
   altar -c <color> <intention>`,
+  CHAIN_PATTERN: "⟖⟗⟕",
 });

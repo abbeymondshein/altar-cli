@@ -61,6 +61,7 @@ module.exports = Object.freeze({
     console.log(`candle ${itemNumber} removed (${color}, ${intention})`);
   },
   printAltarTitle: (title) => {
-    console.log(`_______${title}_______`);
+    //   ⟄❂ ❂⟃
+    console.log(` ⟢  ${title} ⟣  `);
   },
 });
