@@ -8,9 +8,15 @@ const {
   printWelcomeMessage,
   printEmptyMessage,
   printRemoveItem,
+  printAltarTitle,
 } = require("./print");
 const { printAltar } = require("./printAltar");
-const { verifyColor, formatItemToAdd, formatAltarUpdate } = require("./utils");
+const {
+  verifyColor,
+  formatItemToAdd,
+  formatAltarUpdate,
+  loadAltarTitle,
+} = require("./utils");
 
 program
   .option("-l, --load", "Load Altar")
@@ -69,6 +75,7 @@ if (load) {
       printEmptyMessage();
     }
 
+    printAltarTitle(loadAltarTitle());
     printAltar(JSON.parse(data));
   });
 }

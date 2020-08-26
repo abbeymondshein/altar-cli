@@ -60,4 +60,7 @@ module.exports = Object.freeze({
     const { color, intention } = removedItem[0];
     console.log(`candle ${itemNumber} removed (${color}, ${intention})`);
   },
+  printAltarTitle: (title) => {
+    console.log(`_______${title}_______`);
+  },
 });

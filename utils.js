@@ -1,4 +1,6 @@
 const { COLOR_OPTIONS } = require("./constants");
+const fs = require("fs");
+const { printAltarTitle } = require("./print");
 
 module.exports = Object.freeze({
   verifyColor: (color) => {
@@ -19,4 +21,11 @@ module.exports = Object.freeze({
     return modifiedAltarItems;
   },
   addItemToAltar: (altar, newItem) => {},
+  loadAltarTitle: () => {
+    const data = JSON.parse(
+      // readFileSync is blocking to ensure title loaded before logging altar
+      fs.readFileSync(`${__dirname}/altarCustomization.json`, "utf8")
+    );
+    return data[0].title;
+  },
 });

@@ -4,7 +4,7 @@ const {
   printCandleIntentions,
   printShelf,
 } = require("./print");
-const { SHELF } = require("./constants");
+const { loadAltarTitle } = require("./utils");
 
 module.exports = Object.freeze({
   printAltar: (altarItems) => {
