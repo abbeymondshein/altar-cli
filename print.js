@@ -20,9 +20,6 @@ module.exports = Object.freeze({
     console.log(NOT_APPROVED_COLOR_MESSAGE);
     console.log(APPROVED_COLORS);
   },
-  printCandleLit: () => {
-    console.log(ADDED_MESSAGE);
-  },
   printCandleWithColor: (altarItems) => {
     const combined = [];
     altarItems.forEach((element) => {

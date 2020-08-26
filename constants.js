@@ -35,8 +35,10 @@ module.exports = Object.freeze({
   ADDED_MESSAGE: "candle successfully lit!",
   NOT_APPROVED_COLOR_MESSAGE: `The color you have chosen is not an approved option.`,
   addingMessage: (color, intention) => {
-    return `Placing a new ${color} candle on the altar. 
-Lighting the candle, and setting the intention: ${intention}`;
+    return [
+      `Placing a new ${color} candle on the altar. `,
+      `Lighting the candle, and setting the intention: ${intention}`,
+    ];
   },
   EMPTY_MESSAGE: `Your Altar is currently empty.
 You can add a candle using the command:

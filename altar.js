@@ -3,8 +3,6 @@ const { program } = require("commander");
 const fs = require("fs");
 const {
   printNotApprovedColor,
-  printCandleLit,
-  printAddingNewItem,
   printWelcomeMessage,
   printEmptyMessage,
   printRemoveItem,
@@ -18,6 +16,7 @@ const {
   loadAltarTitle,
 } = require("./utils");
 const { APPROVED_COLORS } = require("./constants");
+const { animateAddingCandle, animateAltarCleared } = require("./loaders");
 
 program
   .option("-l, --load", "Load Altar")
@@ -49,8 +48,6 @@ if (candle) {
 
   const intention = args.join(" ");
   const newItem = formatItemToAdd(candle, intention);
-  // TODO: add in "loading/lighting" indicators using ora
-  printAddingNewItem(candle, intention);
 
   fs.readFile(`${__dirname}/altarItems.json`, "utf8", (err, data) => {
     if (err) {
@@ -63,7 +60,7 @@ if (candle) {
       JSON.stringify(formatAltarUpdate(data, newItem)),
       (err) => {
         if (err) throw err;
-        printCandleLit();
+        animateAddingCandle(candle, intention);
       }
     );
   });
@@ -92,8 +89,7 @@ if (clear) {
       return;
     }
   });
-  // TODO: Extract and animate with ora
-  console.log("ALTAR CLEARED");
+  animateAltarCleared();
 }
 
 if (remove) {
