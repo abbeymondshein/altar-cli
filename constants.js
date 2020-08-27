@@ -23,15 +23,15 @@ module.exports = Object.freeze({
     "cyanBright",
     "whiteBright",
   ],
-  APPROVED_COLORS: `OPTIONS: ${c.bgRed(" red ")} ${c.bgGreen(
-    " green "
-  )} ${c.bgYellow(" yellow ")} ${c.bgBlue(" blue ")} ${c.bgMagenta(
-    " magenta "
-  )} ${c.bgCyan(" cyan ")} ${c.bgWhiteBright.black(" white ")} ${c.bgGrey(
-    " grey "
-  )}
-  `,
-  HELP_MESSAGE: `for options & help, enter ${c.bold.redBright("altar -h")}`,
+  APPROVED_COLORS: `COLOR OPTIONS: 
+  ${c.black.bgRed(" red ")} ${c.black.bgGreen(" green ")} ${c.black.bgYellow(
+    " yellow "
+  )} ${c.white.bgBlue(" blue ")} 
+  ${c.black.bgMagenta(" magenta ")} ${c.black.bgCyan(
+    " cyan "
+  )} ${c.bgWhiteBright.black(" white ")} ${c.black.bgGrey(" grey ")} `,
+  HELP_MESSAGE: `for options & help, 
+enter ${c.bold.redBright("altar -h")}`,
   ADDED_MESSAGE: "candle successfully lit!",
   NOT_APPROVED_COLOR_MESSAGE: `The color you have chosen is not an approved option.`,
   addingMessage: (color, intention) => {
@@ -44,4 +44,8 @@ module.exports = Object.freeze({
 You can add a candle using the command:
   altar -c <color> <intention>`,
   CHAIN_PATTERN: "⟖⟗⟕",
+  ALTAR_CALVIN: `  ┌─┐┬ ┌┬┐┌─┐┬─┐
+  ├─┤│  │ ├─┤├┬┘
+  ┴ ┴┴─┘┴ ┴ ┴┴└─`,
+  FLOWER: "✿", // flower options: ✿✽✾❁❃❊❋⚘❀
 });

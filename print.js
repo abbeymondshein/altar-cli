@@ -10,6 +10,7 @@ const {
   DIVIDER,
   HELP_MESSAGE,
   EMPTY_MESSAGE,
+  ALTAR_CALVIN,
 } = require("./constants");
 
 module.exports = Object.freeze({
@@ -42,11 +43,10 @@ module.exports = Object.freeze({
     console.log(addingMessage(color, intention));
   },
   printWelcomeMessage: () => {
-    console.log(`
-
-    ${DIVIDER}
-    Welcome to Altar
-    ${DIVIDER}
+    console.log(` ${DIVIDER} 
+  ⟄ welcome to ⟃
+${ALTAR_CALVIN}
+ ${DIVIDER}
     
 ${HELP_MESSAGE}
     `);
