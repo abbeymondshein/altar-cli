@@ -22,8 +22,14 @@ program
   .option("-l, --load", "Load Altar")
   .option("-t, --title <title>", "Update the title of your Altar")
   .option("-x, --clear", "Clear Altar of all Items")
-  .option("-c, --candle <color>", `Add a candle: color is required.`)
-  .option("-f, --flower <color>", `Add a flower: color is required.`)
+  .option(
+    "-c, --candle <color> <intention: optional>",
+    `Add a candle: color is required.`
+  )
+  .option(
+    "-f, --flower <color> <intention: optional>",
+    `Add a flower: color is required.`
+  )
   .option(
     "-rm --remove <itemNumber>",
     `Remove a specific candle by number. 
