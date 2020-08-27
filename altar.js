@@ -16,7 +16,7 @@ const {
   loadAltarTitle,
 } = require("./utils");
 const { APPROVED_COLORS } = require("./constants");
-const { animateAddingCandle, animateAltarCleared } = require("./loaders");
+const { animateAddingItem, animateAltarCleared } = require("./loaders");
 
 program
   .option("-l, --load", "Load Altar")
@@ -37,20 +37,21 @@ ${APPROVED_COLORS} `
   )
   .parse(process.argv);
 
-const { load, candle, clear, remove, args, title } = program;
+const { load, candle, clear, remove, args, title, flower } = program;
 const opts = program.opts();
 
 // Only print welcome message when a flag is not included
 !Object.values(opts).includes(true) && printWelcomeMessage();
 
-if (candle) {
-  if (!verifyColor(candle)) {
+if (candle || flower) {
+  if (!verifyColor(candle || flower)) {
     printNotApprovedColor();
     return;
   }
 
   const intention = args.join(" ");
-  const newItem = formatItemToAdd(candle, intention);
+  const isFlower = flower ? true : false;
+  const newItem = formatItemToAdd(candle || flower, intention, isFlower);
 
   fs.readFile(`${__dirname}/altarItems.json`, "utf8", (err, data) => {
     if (err) {
@@ -63,7 +64,7 @@ if (candle) {
       JSON.stringify(formatAltarUpdate(data, newItem)),
       (err) => {
         if (err) throw err;
-        animateAddingCandle(candle, intention);
+        animateAddingItem(candle || flower, intention, isFlower);
       }
     );
   });

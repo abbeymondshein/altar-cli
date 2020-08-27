@@ -5,29 +5,34 @@ const {
   SHELF,
   APPROVED_COLORS,
   NOT_APPROVED_COLOR_MESSAGE,
-  ADDED_MESSAGE,
   addingMessage,
   DIVIDER,
   HELP_MESSAGE,
   EMPTY_MESSAGE,
   ALTAR_CALVIN,
+  FLOWER,
+  STEM,
 } = require("./constants");
 
 module.exports = Object.freeze({
-  printFlame: (itemQuantity) => {
-    console.log(`${c.yellow(FLAME.repeat(itemQuantity))}`);
-  },
   printNotApprovedColor: () => {
     console.log(NOT_APPROVED_COLOR_MESSAGE);
     console.log(APPROVED_COLORS);
   },
-  printCandleWithColor: (altarItems) => {
-    const combined = [];
-    altarItems.forEach((element) => {
-      const { color } = element;
-      combined.push(`${c[color](CANDLE)}`);
+  printAltarItems: (altarItems) => {
+    const topRow = [];
+    const bottomRow = [];
+    altarItems.forEach(({ color, isFlower }) => {
+      if (isFlower) {
+        topRow.push(`${c[color](FLOWER)}`);
+        bottomRow.push(`${c.green(STEM)}`);
+      } else {
+        topRow.push(`${c.yellow(FLAME)}`);
+        bottomRow.push(`${c[color](CANDLE)}`);
+      }
     });
-    console.log(combined.join(""));
+    console.log(`${topRow.join("")}
+${bottomRow.join("")}`);
   },
   printCandleIntentions: (altarItems) => {
     altarItems.forEach((candleEntry) => {

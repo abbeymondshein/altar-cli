@@ -3,8 +3,10 @@ const c = require("chalk");
 module.exports = Object.freeze({
   FLAME: " ▴",
   CANDLE: " ┃",
+  FLOWER: " ✿", // unicode flower options: ✿✽✾❁❃❊❋⚘❀
+  STEM: " ┝", // ┝├ᛉ
   DIVIDER: "◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆",
-  SHELF: "┍━━━━━━━━━━━━━━━━┑",
+  SHELF: "┍━━━━━━━━━━━━━━━━┑", // only fits ~8 items
   COLOR_OPTIONS: [
     "black",
     "red",
@@ -32,12 +34,18 @@ module.exports = Object.freeze({
   )} ${c.bgWhiteBright.black(" white ")} ${c.black.bgGrey(" grey ")} `,
   HELP_MESSAGE: `for options & help, 
 enter ${c.bold.redBright("altar -h")}`,
-  ADDED_MESSAGE: "candle successfully lit!",
+  generateAddedMessage: (isFlower) => {
+    return isFlower
+      ? "flower successfully placed!"
+      : "candle successfully lit!";
+  },
   NOT_APPROVED_COLOR_MESSAGE: `The color you have chosen is not an approved option.`,
-  addingMessage: (color, intention) => {
+  addingMessage: (color, intention, isFlower) => {
     return [
-      `Placing a new ${color} candle on the altar. `,
-      `Lighting the candle, and setting the intention: ${intention}`,
+      `Placing a new ${color} ${isFlower ? "flower" : "candle"} on the altar. `,
+      `${
+        !isFlower ? "Lighting the candle, and " : ""
+      }setting the intention: ${intention}`,
     ];
   },
   EMPTY_MESSAGE: `Your Altar is currently empty.
@@ -47,5 +55,4 @@ You can add a candle using the command:
   ALTAR_CALVIN: `  ┌─┐┬ ┌┬┐┌─┐┬─┐
   ├─┤│  │ ├─┤├┬┘
   ┴ ┴┴─┘┴ ┴ ┴┴└─`,
-  FLOWER: "✿", // flower options: ✿✽✾❁❃❊❋⚘❀
 });

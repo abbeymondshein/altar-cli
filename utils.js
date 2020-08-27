@@ -6,10 +6,11 @@ module.exports = Object.freeze({
   verifyColor: (color) => {
     return COLOR_OPTIONS.includes(color);
   },
-  formatItemToAdd: (color, intention) => {
+  formatItemToAdd: (color, intention, isFlower) => {
     return {
       color,
       intention,
+      isFlower,
     };
   },
   formatAltarUpdate: (data, newItem) => {

@@ -1,15 +1,13 @@
 const {
-  printFlame,
-  printCandleWithColor,
   printCandleIntentions,
   printShelf,
+  printAltarItems,
 } = require("./print");
 const { loadAltarTitle } = require("./utils");
 
 module.exports = Object.freeze({
   printAltar: (altarItems) => {
-    printFlame(altarItems.length);
-    printCandleWithColor(altarItems);
+    printAltarItems(altarItems);
     printShelf();
     printCandleIntentions(altarItems);
   },
